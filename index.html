@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Deis: A lightweight, composable PaaS</title>
+
+		<meta name="description" content="Deis: A lightweight, composable PaaS">
+		<meta name="author" content="Chris Armstrong">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+		document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body style="font-family: helvetica">
+
+		<div class="reveal" style="font-family: Helvetica Neue Light,HelveticaNeue-Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;">
+
+			<div class="slides">
+				<section>
+					<div>
+						<img src="img/DeisLogo.png" class="stretched" style="border:none;background:none;box-shadow:0 0 0"/>
+						<h2>A lightweight, composable PaaS</h2>
+						<p>
+							<small>Chris Armstrong</a> / <a href="http://twitter.com/carmstrong_afk">@carmstrong_afk</a></small>
+						</p>
+					</div>
+				</section>
+
+				<section>
+          <img src="img/me.jpg" class="stretched" style="border:none;background:none;"/>
+          <br/>
+					<ul>
+						<li>VP Engineering, Deis</li>
+						<li>Core maintainer</li>
+						<li>Author of Deis persistent storage</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="img/DeisSmall.png" class="stretched" style="border:none;background:none;"/>
+					<h2>Deis, Inc.</h2>
+					<ul>
+						<li>Deis - Lightweight, composable Docker PaaS</li>
+						<li>Helm - The Package Manager for Kubernetes</li>
+						<li>All open-source</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="img/DeisLogo.png" class="stretched" style="border:none;background:none;box-shadow:0 0 0"/>
+					<ul>
+						<li>Leading Docker-based PaaS</li>
+						<li>Opinionated developer workflow</li>
+						<li>Go, Python &amp; Shell</li>
+						<li>100% open source</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Philosophy</h2>
+					<ul>
+						<li>Focus on 12 Factor Apps</li>
+						<li>Release early, release often</li>
+						<li>Keep a stable developer workflow</li>
+						<li>Integrate with open source ecosystem</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>The Project</h2>
+					<ul>
+						<li>1,200,000 downloads</li>
+						<li>~5000 stars, ~800 forks</li>
+						<li>2200+ Deis deployments daily</li>
+						<li>15 full-time devs, 150+ contributors</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Why PaaS?</h1>
+				</section>
+
+				<section>
+					<h2>Developer Self-Service</h2>
+					<ul>
+						<li>Create applications</li>
+						<li>Deploy code or Docker images</li>
+						<li>Configure runtime environment</li>
+						<li>Manage releases and rollbacks</li>
+						<li>Run admin commands</li>
+						<li>View aggregated logs</li>
+						<li>Scale via the process model</li>
+						<li>Collaborate with a team</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Division of Responsibility</h2>
+					<ul>
+						<li>Developers own the containers</li>
+						<li>Operations own the platform</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>How does it work?</h1>
+				</section>
+
+				<section>
+					<img src="img/DeisFoundation.png" class="stretch" style="border:none;background:none;box-shadow:0 0 0"/>
+				</section>
+
+				<section>
+          <img src="img/DeisSystemDiagram.png" class="stretch" style="border:none;background:none;box-shadow:0 0 0"/>
+				</section>
+
+				<section>
+					<img src="img/DeisControlPlane.png" class="stretch" style="border:none;background:none;box-shadow:0 0 0"/>
+				</section>
+
+				<section>
+					<h2>Deis is...</h2>
+					<ul>
+						<li>Lightweight</li>
+						<li>Customizable</li>
+						<li>Open-source</li>
+						<li><strong>Highly-available</strong></li>
+						<li><strong>Persistent</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Requirements</h2>
+					<ul>
+						<li>Shared config / service discovery</li>
+						<li>Survive host failure</li>
+						<li>Provide persistent storage for platform</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>How?</h2>
+					<img src="img/coreos.png" style="border:none;background:none;box-shadow:0 0 0"/>
+					<p>+</p>
+					<img src="img/ceph.png" style="border:none;background:none;box-shadow:0 0 0"/>
+				</section>
+
+				<section>
+					<h2>Distributed systems!</h2>
+					<ul>
+						<li>etcd (distributed key-value store)</li>
+						<li>fleet (distributed init)</li>
+						<li>Ceph (distributed storage)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>etcd</h2>
+					<ul>
+						<li>Distrubted key-value store</li>
+						<li>Daemon runs on all CoreOS hosts</li>
+						<li>Raft for consensus</li>
+				</section>
+
+				<section>
+					<h3>Writing</h3>
+<pre><code>$ etcdctl set /message Hello
+Hello
+$ curl -L -X PUT http://127.0.0.1:2379/v2/keys/message -d value="Hello"
+{"action":"set","node":{"key":"/message","value":"Hello","modifiedIndex":4,"createdIndex":4}}
+</code></pre>
+					<h3>Reading</h3>
+<pre><code>$ etcdctl get /message
+Hello
+$ curl -L http://127.0.0.1:2379/v2/keys/message
+{"action":"get","node":{"key":"/message","value":"Hello","modifiedIndex":4,"createdIndex":4}}
+</code></pre>
+				</section>
+
+				<section>
+					<h2>fleet</h2>
+					<ul>
+						<li>Cluster-aware systemd wrapper</li>
+						<li>Stores state in etcd</li>
+						<li>Services packed into unit definitions</li>
+				</section>
+
+				<section>
+					<h2>deis-router</h2>
+					<pre><code data-trim contenteditable>
+[Unit]
+Description=deis-router
+
+[Service]
+EnvironmentFile=/etc/environment
+TimeoutStartSec=20m
+ExecStart=/bin/sh -c "IMAGE=`/run/deis/bin/get_image /deis/router` && docker run --name deis-router --rm -p 80:80 -p 2222:2222 -p 443:443 -p 9090:9090 -e EXTERNAL_PORT=80 -e HOST=$COREOS_PRIVATE_IPV4 $IMAGE"
+ExecStop=-/usr/bin/docker stop deis-router
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Fleet]
+Conflicts=deis-router@*.service
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Cluster units</h2>
+<pre><code data-trim contenteditable>$ fleetctl list-units
+UNIT                            MACHINE                 ACTIVE          SUB
+api_v28.web.1.service           15499c5f.../10.21.2.149 active          running
+dashboard_v34.web.1.service     c98d2f7c.../10.21.1.230 active          running
+deis-builder.service            15499c5f.../10.21.2.149 activating      start-post
+deis-router@1.service           25992000.../10.21.1.229 active          running
+deis-router@2.service           c98d2f7c.../10.21.1.230 active          running
+deis-router@3.service           15499c5f.../10.21.2.149 active          running</code></pre>
+				</section>
+
+				<section>
+					<h2>Ceph</h2>
+					<ul>
+						<li>Distributed storage</li>
+						<li>Consumable as block device, blob API, or filesystem</li>
+						<li>Paxos consensus</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>deis-store</h2>
+					<ul>
+						<li>monitor</li>
+						<li>daemon</li>
+						<li>gateway</li>
+						<li>metadata</li>
+						<li>volume</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>All in containers!</h2>
+					<pre><code data-trim contenteditable>
+FROM ubuntu:14.04
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update &amp;&amp; apt-get install -yq curl
+RUN curl -sSL 'https://ceph.com/git/?p=ceph.git;a=blob_plain;f=keys/release.asc' | apt-key add -
+RUN echo "deb http://ceph.com/debian-firefly trusty main" > /etc/apt/sources.list.d/ceph.list
+RUN DEBIAN_FRONTEND=noninteractive apt-get update &amp;&amp; apt-get install -yq ceph
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Schedulers</h2>
+					<ul>
+						<li>CoreOS fleet</li>
+						<li>Apache Mesos</li>
+						<li>Docker Swarm</li>
+						<li>Google Kubernetes</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>The Future</h2>
+					<img src="img/kubernetes.png" style="border:none;background:none;box-shadow:0 0 0"/>
+				</section>
+
+				<section>
+					<h2>Kubernetes</h2>
+					<ul>
+						<li>lean: lightweight, simple, accessible</li>
+						<li>portable: public, private, hybrid, multi cloud</li>
+						<li>extensible: modular, pluggable, hookable, composable</li>
+						<li>self-healing: auto-placement, auto-restart, auto-replication</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Deis 2.0</h2>
+					<ul>
+						<li>Certified workloads on Kubernetes</li>
+						<li>Components run indepdently</li>
+						<li>Still open-source!</li>
+						<li>Runs anywhere Kubernetes runs</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>You can help!</h2>
+					<ul>
+						<li><a href="https://github.com/deis/deis">https://github.com/deis/deis</a></li>
+						<li><a href="http://docs.deis.io">http://docs.deis.io</a></li>
+						<li>#deis @ freenode</li>
+				</section>
+
+				<section>
+					<h2>Thanks!</h2>
+					<ul>
+						<li>twitter.com/carmstrong_afk</li>
+						<li>github.com/carmstrong</li>
+						<li>chris@deis.com</li>
+					</ul>
+				</section>
+
+				<section data-background="img/DeisBackground.jpg"></section>
+
+			</div>
+
+		</div>
+
+		<script src="reveal.js/lib/js/head.min.js"></script>
+		<script src="reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
